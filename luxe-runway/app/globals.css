@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* ============================================================
+   LUXE RUNWAY — luxury design system (Tailwind v4 @theme tokens)
+   Colors: black · champagne gold · ivory · deep burgundy
+   ============================================================ */
+@theme {
+  --color-noir: #07060a;
+  --color-noir-soft: #0e0c12;
+  --color-ink: #14121a;
+  --color-ivory: #f6f1e7;
+  --color-ivory-dim: #d8d0c2;
+  --color-champagne: #c8a45d;
+  --color-champagne-light: #e6cf9a;
+  --color-champagne-dark: #9c7e42;
+  --color-burgundy: #5c1024;
+  --color-burgundy-light: #8a1f3a;
+
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-luxe: 1.25rem;
+
+  --shadow-luxe: 0 24px 60px -18px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 60px -12px rgba(200, 164, 93, 0.35);
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--color-noir);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-champagne);
+  color: var(--color-noir);
+}
+
+/* Slim luxury scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-noir);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-champagne-dark), var(--color-burgundy));
+  border-radius: 999px;
+}
+
+/* ---------- Reusable luxury utility classes ---------- */
+@layer components {
+  .glass {
+    background: linear-gradient(
+      135deg,
+      rgba(246, 241, 231, 0.08),
+      rgba(246, 241, 231, 0.02)
+    );
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(246, 241, 231, 0.12);
+  }
+
+  .glass-strong {
+    background: linear-gradient(
+      135deg,
+      rgba(14, 12, 18, 0.85),
+      rgba(14, 12, 18, 0.6)
+    );
+    backdrop-filter: blur(28px) saturate(150%);
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
+    border: 1px solid rgba(200, 164, 93, 0.18);
+  }
+
+  .gold-text {
+    background: linear-gradient(
+      100deg,
+      var(--color-champagne-dark),
+      var(--color-champagne-light) 45%,
+      var(--color-champagne)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gold-hr {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-champagne) 50%,
+      transparent
+    );
+  }
+
+  .tracking-luxe {
+    letter-spacing: 0.32em;
+  }
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Drei <Html> and r3f canvas should never trap pointer when hidden */
+canvas {
+  display: block;
+  touch-action: none;
+}
